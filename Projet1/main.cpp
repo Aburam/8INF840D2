@@ -2,6 +2,9 @@
 #include "Membre.h"
 #include "Arbre.cpp"
 
+/*
+* Rajoute un nouveau membre dans l'arbre selon les choix faits par l'utilisateur
+*/
 void addMember(Arbre<Membre>* arb) {
 	char* nom = new char[19];
 	char* prenom = new char[19];
@@ -38,6 +41,9 @@ void addMember(Arbre<Membre>* arb) {
 	
 }
 
+/*
+*Récupère une des données (taille, nombre de feuilles, nombre de noeuds, hauteur) de l'arbre selon les choix faits par l'utilisateur
+*/
 void calculate(const Arbre<Membre>* arb) {
 	char reponse = 0;
 	cout << " Que voulez-vous calculer ?" << endl;
@@ -62,6 +68,9 @@ void calculate(const Arbre<Membre>* arb) {
 	}
 }
 
+/*
+*Récupère tout les membres présent dans l'arbre  ayant la couleur de yeux choisie par l'utilisateur
+*/
 void listEyes(const Arbre<Membre>* arb) {
 	char* couleurYeux = new char[10];
 	cout << "Entrez une couleur d'yeux : " << endl;
@@ -70,6 +79,9 @@ void listEyes(const Arbre<Membre>* arb) {
 	delete couleurYeux;
 }
 
+/*
+*Récupère tout les ancêtres d'un membre présent dans l'arbre  ayant la couleur de yeux choisie par l'utilisateur
+*/
 void listEyesFrom(const Arbre<Membre> * arb) {
 	char* nom = new char[20];
 	char* prenom = new char[20];
@@ -87,11 +99,17 @@ void listEyesFrom(const Arbre<Membre> * arb) {
 
 }
 
+/*
+ * Récupère l'age moyen des membres présents dans l'arbre
+ */
 void calculateAge(const Arbre<Membre> * arb) {
 	double ageAverage = arb->ageAverage();
 	cout << "age moyen de l'arbre : " << ageAverage << endl;
 }
 
+/*
+ * Affichage de l'arbre selon trois parcours différents (préfixe, postfixe, enfixe), ce parcours est effectué à partir d'un membre choisi par l'utilisateur
+ */
 void listGenealogicFrom(const Arbre<Membre> * arb) {
 	char* nom = new char[20];
 	char* prenom = new char[20];
@@ -129,7 +147,7 @@ int main() {
 	Arbre<Membre>* arb = new Arbre<Membre>();
 	
 	try {
-
+		//Création d'un arbre de bases pour les besoins de l'exercice
 
 
 		Membre moi("Jean", "Durand", 'M', "bleu", "25/12/1994");
@@ -144,6 +162,8 @@ int main() {
 		arb->inserer(gmere2, &mere);
 		arb->inserer(gpere1, &pere);
 		arb->inserer(gpere2, &mere);
+
+		//Affichage de l'arbre selon trois parcours différents (préfixe, postfixe, enfixe)
 		cout << "Parcours pre-ordre : ";
 		arb->parcourirPreOrdre(arb->getRacine());
 		cout << "Parcours post-ordre : ";
@@ -159,6 +179,7 @@ int main() {
 
 	char reponse = 0;
 	while(reponse != '7') {
+		// 7 possibilités pour l'utilisateur
 		cout << "\nOperations possibles : " << endl;
 		cout << "1) Ajouter un nouveau membre" << endl;
 		cout << "2) Calculer la taille de l'arbre genealogique" << endl;
